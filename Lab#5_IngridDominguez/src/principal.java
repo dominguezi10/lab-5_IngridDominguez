@@ -595,7 +595,7 @@ public class principal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jList_jugadores);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 220, 260));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 340, 260));
 
         jTabbedPane1.addTab("Listar", jPanel3);
 
@@ -853,13 +853,14 @@ public class principal extends javax.swing.JFrame {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
+        System.out.println("aqui est");
         try {
             jugadores.get(posJ).setHabilidad(Double.parseDouble(""+js_habilidad1.getValue()));
             jugadores.get(posJ).setNombre(tf_nombrej1.getText());
             jugadores.get(posJ).setPosicion(jcb_posicion1.getSelectedItem().toString());
-            jugadores.get(posJ).setPrecio(Double.parseDouble(""+tf_precioj1));
-            jugadores.get(posJ).setResistenciaFisica(Double.parseDouble(""+js_resistencia1));
-            jugadores.get(posJ).setTecnica(Double.parseDouble(""+js_tecnica1));
+            jugadores.get(posJ).setPrecio(Double.parseDouble(""+tf_precioj1.getText()));
+            jugadores.get(posJ).setResistenciaFisica(Double.parseDouble(""+js_resistencia1.getValue()));
+            jugadores.get(posJ).setTecnica(Double.parseDouble(""+js_tecnica1.getValue()));
             
             DefaultListModel modeloLis = new DefaultListModel();
             for (jugador j : jugadores) {
