@@ -953,7 +953,7 @@ public class principal extends javax.swing.JFrame {
             try {
                 posE = Arbol_Liga.getRowCount();
                 if (equipos.get(posJ) instanceof equipo) {
-                    pp_menuJ.show(evt.getComponent(), evt.getX(), evt.getY());
+                    arbol_menu.show(evt.getComponent(), evt.getX(), evt.getY());
                     equipoS = equipos.get(posE);
                 }
 
@@ -965,30 +965,23 @@ public class principal extends javax.swing.JFrame {
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
         // TODO add your handling code here:
-        this.jd_jugadores.setModal(true); //bloquea entre la ventana padre y la hijapara tranajar solo en el login
-        jd_jugadores.pack(); // acopla el tamaño de la sub ventana a  los controles que tiene
-        jd_jugadores.setLocationRelativeTo(this); // sirve para centrar ambas ventanas .. la ventaja hija con resecto a la ventana padre
-        jd_jugadores.setVisible(true); //  para que se mire
+        this.jd_equipos.setModal(true); //bloquea entre la ventana padre y la hijapara tranajar solo en el login
+        jd_equipos.pack(); // acopla el tamaño de la sub ventana a  los controles que tiene
+        jd_equipos.setLocationRelativeTo(this); // sirve para centrar ambas ventanas .. la ventaja hija con resecto a la ventana padre
+        jd_equipos.setVisible(true); //  para que se mire
 
         //int pos = jList_jugadores.getSelectedIndex();
         System.out.println();
-        tf_nombrej1.setText(jugadorS.getNombre());
-        tf_precioj1.setText("" + jugadorS.getPrecio());
-        String posicion = jugadorS.getPosicion();
-
-        if (posicion.equals("Atacante")) {
-            jcb_posicion1.setSelectedItem(0);
-        } else if (posicion.equals("MedioCampista")) {
-            jcb_posicion1.setSelectedItem(1);
-        } else if (posicion.equals("Delantero")) {
-            jcb_posicion1.setSelectedItem(2);
-        } else if (posicion.equals("Porteo")) {
-            jcb_posicion1.setSelectedItem(3);
+        tf_nombre1.setText(equipoS.getNombre());
+        tf_presupuesto1.setText("" + equipoS.getPresupuesto());
+        sp_copas1.setValue(equipoS.getCopas());
+        if (equipoS.getEstadio().equals("bernabeu")) {
+            jcb_estadio1.setSelectedIndex(0);
+        } else {
+            jcb_estadio1.setSelectedIndex(1);
         }
-
-        js_habilidad1.setValue(jugadorS.getHabilidad());
-        js_resistencia1.setValue(jugadorS.getResistenciaFisica());
-        js_tecnica1.setValue(jugadorS.getTecnica());
+        
+        
     }//GEN-LAST:event_verActionPerformed
 
     /**
