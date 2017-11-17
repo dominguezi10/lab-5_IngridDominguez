@@ -383,6 +383,7 @@ public class principal extends javax.swing.JFrame {
 
             //falta agregar este elemento a un jcb de equipos
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error! sus datos no se guardaron");
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
@@ -417,9 +418,9 @@ public class principal extends javax.swing.JFrame {
             js_habilidad.setValue(0);
             js_resistencia.setValue(0);
             js_tecnica.setValue(0);
-            
+            //
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! sus datos nno se guardaron");
+            JOptionPane.showMessageDialog(this, "Error! sus datos no se guardaron");
         }
     }//GEN-LAST:event_jButton2MouseClicked
 
