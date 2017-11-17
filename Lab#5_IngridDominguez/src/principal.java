@@ -1,7 +1,9 @@
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,9 +35,16 @@ public class principal extends javax.swing.JFrame {
         jd_equipos = new javax.swing.JDialog();
         jLabel15 = new javax.swing.JLabel();
         jcb_equipos = new javax.swing.JComboBox<>();
+        jButton5 = new javax.swing.JButton();
         jd_jugadores = new javax.swing.JDialog();
         jLabel16 = new javax.swing.JLabel();
         jcb_jugadoresVista = new javax.swing.JComboBox<>();
+        pop_menu = new javax.swing.JPopupMenu();
+        modificar = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
+        pp_menuJ = new javax.swing.JPopupMenu();
+        jmi_modificarJ = new javax.swing.JMenuItem();
+        jmi_eliminarJ = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -67,30 +76,44 @@ public class principal extends javax.swing.JFrame {
         js_tecnica = new javax.swing.JSpinner();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList_equipos = new javax.swing.JList<>();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList_jugadores = new javax.swing.JList<>();
 
         jLabel15.setText("Equipos");
+
+        jButton5.setText("Añadir");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_equiposLayout = new javax.swing.GroupLayout(jd_equipos.getContentPane());
         jd_equipos.getContentPane().setLayout(jd_equiposLayout);
         jd_equiposLayout.setHorizontalGroup(
             jd_equiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_equiposLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jcb_equipos, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jcb_equipos, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jd_equiposLayout.setVerticalGroup(
             jd_equiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_equiposLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(63, 63, 63)
                 .addGroup(jd_equiposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcb_equipos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcb_equipos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(305, Short.MAX_VALUE))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
+                .addGap(265, 265, 265))
         );
 
         jLabel16.setText("Jugadores");
@@ -115,6 +138,28 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jcb_jugadoresVista, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(296, Short.MAX_VALUE))
         );
+
+        modificar.setText("Modificar");
+        pop_menu.add(modificar);
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        pop_menu.add(Eliminar);
+
+        jmi_modificarJ.setText("Modificar");
+        pp_menuJ.add(jmi_modificarJ);
+
+        jmi_eliminarJ.setText("Eliminar");
+        jmi_eliminarJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_eliminarJActionPerformed(evt);
+            }
+        });
+        pp_menuJ.add(jmi_eliminarJ);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -322,30 +367,33 @@ public class principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Agregar Jugador", jPanel2);
 
-        jButton3.setText("Ver Equipos");
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setText("Ver Jugadores");
+        jList_equipos.setModel(new DefaultListModel());
+        jList_equipos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_equiposMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList_equipos);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(126, 126, 126)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(299, Short.MAX_VALUE))
-        );
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 222, 270));
+
+        jLabel17.setText("Equipos");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 80, 30));
+
+        jLabel18.setText("Jugadores");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 40, 80, 20));
+
+        jList_jugadores.setModel(new DefaultListModel());
+        jList_jugadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList_jugadoresMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList_jugadores);
+
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 220, 260));
 
         jTabbedPane1.addTab("Listar", jPanel3);
 
@@ -370,11 +418,15 @@ public class principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Equipo Agregado exitosamente");
 
             equipos.add(new equipo(nombre, presupuesto, copas, estadio));
-            
+
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_equipos.getModel(); // capturamos la vista del modelo
             modelo.addElement(equipos.get(equipos.size() - 1));
             jcb_equipos.setModel(modelo); // refrescamos
-            
+
+            DefaultListModel modeloLista = (DefaultListModel) jList_equipos.getModel();
+            modeloLista.addElement(equipos.get(equipos.size() - 1));
+            jList_equipos.setModel(modeloLista);
+
             System.out.println(equipos.get(equipos.size() - 1));
             tf_nombre.setText("");
             tf_presupuesto.setText("");
@@ -396,23 +448,27 @@ public class principal extends javax.swing.JFrame {
         int resistencia;
         String posicion;
         try {
-            
+
             nombre = tf_nombrej.getText();
-            precio = Double.parseDouble(""+tf_precioj.getText());
-            habilidad = Integer.parseInt(""+js_habilidad.getValue());
-            tecnica = Integer.parseInt(""+js_tecnica.getValue());
-            resistencia = Integer.parseInt(""+js_resistencia.getValue());
+            precio = Double.parseDouble("" + tf_precioj.getText());
+            habilidad = Integer.parseInt("" + js_habilidad.getValue());
+            tecnica = Integer.parseInt("" + js_tecnica.getValue());
+            resistencia = Integer.parseInt("" + js_resistencia.getValue());
             posicion = jcb_posicion.getSelectedItem().toString();
-            
+
             jugadores.add(new jugador(nombre, precio, posicion, true, habilidad, tecnica, resistencia));
             DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_jugadores.getModel();
-            modelo.addElement(jugadores.get(jugadores.size()-1));
+            modelo.addElement(jugadores.get(jugadores.size() - 1));
             jcb_jugadores.setModel(modelo);
             jcb_jugadoresVista.setModel(modelo);
-            
+
+            DefaultListModel modeloLista = (DefaultListModel) jList_jugadores.getModel();
+            modeloLista.addElement(jugadores.get(jugadores.size() - 1));
+            jList_jugadores.setModel(modeloLista);
+
             JOptionPane.showMessageDialog(this, "Jugadores agregado exitosamente");
-            System.out.println(jugadores.get(jugadores.size()-1));
-            
+            System.out.println(jugadores.get(jugadores.size() - 1));
+
             tf_nombrej.setText("");
             tf_precioj.setText("");
             js_habilidad.setValue(0);
@@ -423,6 +479,73 @@ public class principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error! sus datos no se guardaron");
         }
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        // TODO add your handling code here:
+        DefaultListModel modeloLista = (DefaultListModel) jList_equipos.getModel();
+        modeloLista.addElement(jcb_equipos.getSelectedItem());
+
+        jList_equipos.setModel(modeloLista);
+
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jList_equiposMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_equiposMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) { // click derecho
+            //int pos = jList_equipos.getSelectedIndex();
+            try {
+                int pos = jList_equipos.getSelectedIndex();
+                if (equipos.get(pos) instanceof equipo) {
+                    pop_menu.show(evt.getComponent(), evt.getX(), evt.getY());
+                }
+            } catch (Exception e) {
+            }
+
+        }
+    }//GEN-LAST:event_jList_equiposMouseClicked
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        // TODO add your handling code here:
+        int pos = jList_equipos.getSelectedIndex();
+        equipos.remove(pos);
+
+        DefaultListModel modeloLis = new DefaultListModel();
+        for (equipo e : equipos) {
+            modeloLis.addElement(e);
+        }
+
+        jList_equipos.setModel(modeloLis);
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void jList_jugadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList_jugadoresMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) { // click derecho
+            try {
+                int pos = jList_jugadores.getSelectedIndex();
+                if (jugadores.get(pos) instanceof jugador) {
+                    pp_menuJ.show(evt.getComponent(), evt.getX(), evt.getY());
+                }
+                
+                
+            } catch (Exception e) {
+            }
+
+        }
+
+    }//GEN-LAST:event_jList_jugadoresMouseClicked
+
+    private void jmi_eliminarJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_eliminarJActionPerformed
+        // TODO add your handling code here:
+        int pos = jList_jugadores.getSelectedIndex();
+        jugadores.remove(pos);
+
+        DefaultListModel modeloLis = new DefaultListModel();
+        for (jugador e : jugadores) {
+            modeloLis.addElement(e);
+        }
+
+        jList_jugadores.setModel(modeloLis);
+    }//GEN-LAST:event_jmi_eliminarJActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,10 +583,10 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,6 +595,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -480,9 +605,13 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList_equipos;
+    private javax.swing.JList<String> jList_jugadores;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcb_equipos;
     private javax.swing.JComboBox<String> jcb_estadio;
@@ -491,9 +620,14 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jcb_posicion;
     private javax.swing.JDialog jd_equipos;
     private javax.swing.JDialog jd_jugadores;
+    private javax.swing.JMenuItem jmi_eliminarJ;
+    private javax.swing.JMenuItem jmi_modificarJ;
     private javax.swing.JSpinner js_habilidad;
     private javax.swing.JSpinner js_resistencia;
     private javax.swing.JSpinner js_tecnica;
+    private javax.swing.JMenuItem modificar;
+    private javax.swing.JPopupMenu pop_menu;
+    private javax.swing.JPopupMenu pp_menuJ;
     private javax.swing.JSpinner sp_copas;
     private javax.swing.JTextField tf_nombre;
     private javax.swing.JTextField tf_nombrej;

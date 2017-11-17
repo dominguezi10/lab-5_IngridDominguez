@@ -89,7 +89,15 @@ public class jugador {
 
     @Override
     public String toString() {
-        return "jugador{" + "nombre=" + nombre + ", posicion=" + posicion + '}';
+        String d = "";
+        if(disponibildad== true){
+            d = "Disponible";
+        }else{
+            d = "No Disponible";
+        }
+        
+        return "nombre= " + nombre + "\n posicion= " + posicion + "\n precio= $"+precio
+               +"\n Disponibilidad= "+d+"\n\n" ;
     }
     
     
