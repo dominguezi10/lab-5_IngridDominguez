@@ -1,9 +1,12 @@
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -105,6 +108,10 @@ public class principal extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList_jugadores = new javax.swing.JList<>();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Arbol_Liga = new javax.swing.JTree();
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel19.setText("Modificar Equipo");
@@ -599,6 +606,42 @@ public class principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Listar", jPanel3);
 
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 665, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 382, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Comprar", jPanel4);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liga Española");
+        Arbol_Liga.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane3.setViewportView(Arbol_Liga);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(170, 170, 170)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(199, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Arbol", jPanel5);
+
         getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 670, 410));
 
         pack();
@@ -628,6 +671,22 @@ public class principal extends javax.swing.JFrame {
             modeloLista.addElement(equipos.get(equipos.size() - 1));
             jList_equipos.setModel(modeloLista);
 
+            //
+            DefaultTreeModel m = (DefaultTreeModel) Arbol_Liga.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) m.getRoot();
+            DefaultMutableTreeNode nodo_Equipo;
+            nodo_Equipo = new DefaultMutableTreeNode(equipos.get(equipos.size()-1).getNombre() );
+            
+            for (int i = 0; i < equipos.get(equipos.size()-1).getJugadores().size(); i++) {
+                DefaultMutableTreeNode jugadoR = new DefaultMutableTreeNode(
+                        equipos.get(equipos.size()-1).getJugadores().get(i)  );
+                
+                nodo_Equipo.add(jugadoR);
+            }
+            raiz.add(nodo_Equipo);
+            m.reload(); // cargar el modelo de la vista
+
+            //
             equipos.get(equipos.size() - 1).getJugadores().add((jugador) jcb_jugadores.getSelectedItem());
 
             System.out.println(equipos.get(equipos.size() - 1));
@@ -812,16 +871,15 @@ public class principal extends javax.swing.JFrame {
         tf_nombrej1.setText(jugadorS.getNombre());
         tf_precioj1.setText("" + jugadorS.getPrecio());
         String posicion = jugadorS.getPosicion();
-         
-         
+
         if (posicion.equals("Atacante")) {
             jcb_posicion1.setSelectedItem(0);
-        }else if(posicion.equals("MedioCampista")){
-             jcb_posicion1.setSelectedItem(1);
-        }else if(posicion.equals("Delantero")){
-             jcb_posicion1.setSelectedItem(2);
-        }else if(posicion.equals("Porteo")){
-             jcb_posicion1.setSelectedItem(3);
+        } else if (posicion.equals("MedioCampista")) {
+            jcb_posicion1.setSelectedItem(1);
+        } else if (posicion.equals("Delantero")) {
+            jcb_posicion1.setSelectedItem(2);
+        } else if (posicion.equals("Porteo")) {
+            jcb_posicion1.setSelectedItem(3);
         }
 
         js_habilidad1.setValue(jugadorS.getHabilidad());
@@ -834,16 +892,15 @@ public class principal extends javax.swing.JFrame {
         tf_nombrej1.setText(jugadorS.getNombre());
         tf_precioj1.setText("" + jugadorS.getPrecio());
         String posicion = jugadorS.getPosicion();
-         
-         
+
         if (posicion.equals("Atacante")) {
             jcb_posicion1.setSelectedItem(0);
-        }else if(posicion.equals("MedioCampista")){
-             jcb_posicion1.setSelectedItem(1);
-        }else if(posicion.equals("Delantero")){
-             jcb_posicion1.setSelectedItem(2);
-        }else if(posicion.equals("Porteo")){
-             jcb_posicion1.setSelectedItem(3);
+        } else if (posicion.equals("MedioCampista")) {
+            jcb_posicion1.setSelectedItem(1);
+        } else if (posicion.equals("Delantero")) {
+            jcb_posicion1.setSelectedItem(2);
+        } else if (posicion.equals("Porteo")) {
+            jcb_posicion1.setSelectedItem(3);
         }
 
         js_habilidad1.setValue(jugadorS.getHabilidad());
@@ -855,24 +912,24 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("aqui est");
         try {
-            jugadores.get(posJ).setHabilidad(Double.parseDouble(""+js_habilidad1.getValue()));
+            jugadores.get(posJ).setHabilidad(Double.parseDouble("" + js_habilidad1.getValue()));
             jugadores.get(posJ).setNombre(tf_nombrej1.getText());
             jugadores.get(posJ).setPosicion(jcb_posicion1.getSelectedItem().toString());
-            jugadores.get(posJ).setPrecio(Double.parseDouble(""+tf_precioj1.getText()));
-            jugadores.get(posJ).setResistenciaFisica(Double.parseDouble(""+js_resistencia1.getValue()));
-            jugadores.get(posJ).setTecnica(Double.parseDouble(""+js_tecnica1.getValue()));
-            
+            jugadores.get(posJ).setPrecio(Double.parseDouble("" + tf_precioj1.getText()));
+            jugadores.get(posJ).setResistenciaFisica(Double.parseDouble("" + js_resistencia1.getValue()));
+            jugadores.get(posJ).setTecnica(Double.parseDouble("" + js_tecnica1.getValue()));
+
             DefaultListModel modeloLis = new DefaultListModel();
             for (jugador j : jugadores) {
                 modeloLis.addElement(j);
             }
-            
+
             jList_jugadores.setModel(modeloLis);
             JOptionPane.showMessageDialog(jd_jugadores, "Jugador modificado con exito");
         } catch (Exception e) {
-            
+
         }
-        
+
     }//GEN-LAST:event_jButton5MouseClicked
 
     /**
@@ -911,6 +968,7 @@ public class principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree Arbol_Liga;
     private javax.swing.JMenuItem Eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -952,8 +1010,11 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcb_estadio;
     private javax.swing.JComboBox<String> jcb_estadio1;
