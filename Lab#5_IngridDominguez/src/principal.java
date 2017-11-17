@@ -951,7 +951,7 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.isMetaDown()) { // click derecho
             try {
-                posE = Arbol_Liga.getSelectionRows()[0];
+                posE = Arbol_Liga.getSelectionCount();
                 if (equipos.get(posE) instanceof equipo) {
                     arbol_menu.show(evt.getComponent(), evt.getX(), evt.getY());
                     equipoS = equipos.get(posE);
