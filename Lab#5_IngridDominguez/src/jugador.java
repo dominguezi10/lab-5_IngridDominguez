@@ -12,7 +12,7 @@ public class jugador {
     private String nombre;
     private double precio;
     private String posicion;
-    private double disponibildad;
+    private boolean disponibildad;
     private double habilidad;
     private double tecnica;
     private double resistenciaFisica;
@@ -20,7 +20,8 @@ public class jugador {
     public jugador() {
     }
 
-    public jugador(String nombre, double precio, String posicion, double disponibildad, double habilidad, double tecnica, double resistenciaFisica) {
+    public jugador(String nombre, double precio, String posicion, boolean disponibildad,
+            double habilidad, double tecnica, double resistenciaFisica) {
         this.nombre = nombre;
         this.precio = precio;
         this.posicion = posicion;
@@ -54,11 +55,11 @@ public class jugador {
         this.posicion = posicion;
     }
 
-    public double getDisponibildad() {
+    public boolean getDisponibildad() {
         return disponibildad;
     }
 
-    public void setDisponibildad(double disponibildad) {
+    public void setDisponibildad(boolean disponibildad) {
         this.disponibildad = disponibildad;
     }
 

@@ -33,6 +33,9 @@ public class principal extends javax.swing.JFrame {
         jd_equipos = new javax.swing.JDialog();
         jLabel15 = new javax.swing.JLabel();
         jcb_equipos = new javax.swing.JComboBox<>();
+        jd_jugadores = new javax.swing.JDialog();
+        jLabel16 = new javax.swing.JLabel();
+        jcb_jugadoresVista = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -51,9 +54,9 @@ public class principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tf_nombrej = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        tf_precioj = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jcb_posicion = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
@@ -88,6 +91,29 @@ public class principal extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcb_equipos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(305, Short.MAX_VALUE))
+        );
+
+        jLabel16.setText("Jugadores");
+
+        javax.swing.GroupLayout jd_jugadoresLayout = new javax.swing.GroupLayout(jd_jugadores.getContentPane());
+        jd_jugadores.getContentPane().setLayout(jd_jugadoresLayout);
+        jd_jugadoresLayout.setHorizontalGroup(
+            jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_jugadoresLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(jcb_jugadoresVista, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+        jd_jugadoresLayout.setVerticalGroup(
+            jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_jugadoresLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jd_jugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_jugadoresVista, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -211,6 +237,11 @@ public class principal extends javax.swing.JFrame {
         js_tecnica.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 5));
 
         jButton2.setText("Guardar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -240,8 +271,8 @@ public class principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tf_nombrej)
+                                .addComponent(tf_precioj, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jcb_posicion, 0, 204, Short.MAX_VALUE)
                                 .addComponent(js_habilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(js_resistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -259,11 +290,11 @@ public class principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nombrej, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_precioj, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -355,6 +386,43 @@ public class principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        String nombre;
+        double precio;
+        int habilidad;
+        int tecnica;
+        int resistencia;
+        String posicion;
+        try {
+            
+            nombre = tf_nombrej.getText();
+            precio = Double.parseDouble(""+tf_precioj.getText());
+            habilidad = Integer.parseInt(""+js_habilidad.getValue());
+            tecnica = Integer.parseInt(""+js_tecnica.getValue());
+            resistencia = Integer.parseInt(""+js_resistencia.getValue());
+            posicion = jcb_posicion.getSelectedItem().toString();
+            
+            jugadores.add(new jugador(nombre, precio, posicion, true, habilidad, tecnica, resistencia));
+            DefaultComboBoxModel modelo = (DefaultComboBoxModel) jcb_jugadores.getModel();
+            modelo.addElement(jugadores.get(jugadores.size()-1));
+            jcb_jugadores.setModel(modelo);
+            jcb_jugadoresVista.setModel(modelo);
+            
+            JOptionPane.showMessageDialog(this, "Jugadores agregado exitosamente");
+            System.out.println(jugadores.get(jugadores.size()-1));
+            
+            tf_nombrej.setText("");
+            tf_precioj.setText("");
+            js_habilidad.setValue(0);
+            js_resistencia.setValue(0);
+            js_tecnica.setValue(0);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error! sus datos nno se guardaron");
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -402,6 +470,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -414,18 +483,20 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JComboBox<String> jcb_equipos;
     private javax.swing.JComboBox<String> jcb_estadio;
     private javax.swing.JComboBox<String> jcb_jugadores;
+    private javax.swing.JComboBox<String> jcb_jugadoresVista;
     private javax.swing.JComboBox<String> jcb_posicion;
     private javax.swing.JDialog jd_equipos;
+    private javax.swing.JDialog jd_jugadores;
     private javax.swing.JSpinner js_habilidad;
     private javax.swing.JSpinner js_resistencia;
     private javax.swing.JSpinner js_tecnica;
     private javax.swing.JSpinner sp_copas;
     private javax.swing.JTextField tf_nombre;
+    private javax.swing.JTextField tf_nombrej;
+    private javax.swing.JTextField tf_precioj;
     private javax.swing.JTextField tf_presupuesto;
     // End of variables declaration//GEN-END:variables
 
