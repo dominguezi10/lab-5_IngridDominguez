@@ -71,6 +71,8 @@ public class principal extends javax.swing.JFrame {
         pp_menuJ = new javax.swing.JPopupMenu();
         jmi_modificarJ = new javax.swing.JMenuItem();
         jmi_eliminarJ = new javax.swing.JMenuItem();
+        arbol_menu = new javax.swing.JPopupMenu();
+        ver = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -370,6 +372,14 @@ public class principal extends javax.swing.JFrame {
         });
         pp_menuJ.add(jmi_eliminarJ);
 
+        ver.setText("ver");
+        ver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verActionPerformed(evt);
+            }
+        });
+        arbol_menu.add(ver);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -621,6 +631,11 @@ public class principal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Liga Española");
         Arbol_Liga.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        Arbol_Liga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Arbol_LigaMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(Arbol_Liga);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -679,7 +694,7 @@ public class principal extends javax.swing.JFrame {
             
             for (int i = 0; i < equipos.get(equipos.size()-1).getJugadores().size(); i++) {
                 DefaultMutableTreeNode jugadoR = new DefaultMutableTreeNode(
-                        equipos.get(equipos.size()-1).getJugadores().get(i)  );
+                        equipos.get(equipos.size()-1).getJugadores().get(i).getNombre()  );
                 
                 nodo_Equipo.add(jugadoR);
             }
@@ -932,6 +947,50 @@ public class principal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton5MouseClicked
 
+    private void Arbol_LigaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Arbol_LigaMouseClicked
+        // TODO add your handling code here:
+        if (evt.isMetaDown()) { // click derecho
+            try {
+                posE = Arbol_Liga.getRowCount();
+                if (equipos.get(posJ) instanceof equipo) {
+                    pp_menuJ.show(evt.getComponent(), evt.getX(), evt.getY());
+                    equipoS = equipos.get(posE);
+                }
+
+            } catch (Exception e) {
+            }
+
+        }
+    }//GEN-LAST:event_Arbol_LigaMouseClicked
+
+    private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
+        // TODO add your handling code here:
+        this.jd_jugadores.setModal(true); //bloquea entre la ventana padre y la hijapara tranajar solo en el login
+        jd_jugadores.pack(); // acopla el tamaño de la sub ventana a  los controles que tiene
+        jd_jugadores.setLocationRelativeTo(this); // sirve para centrar ambas ventanas .. la ventaja hija con resecto a la ventana padre
+        jd_jugadores.setVisible(true); //  para que se mire
+
+        //int pos = jList_jugadores.getSelectedIndex();
+        System.out.println();
+        tf_nombrej1.setText(jugadorS.getNombre());
+        tf_precioj1.setText("" + jugadorS.getPrecio());
+        String posicion = jugadorS.getPosicion();
+
+        if (posicion.equals("Atacante")) {
+            jcb_posicion1.setSelectedItem(0);
+        } else if (posicion.equals("MedioCampista")) {
+            jcb_posicion1.setSelectedItem(1);
+        } else if (posicion.equals("Delantero")) {
+            jcb_posicion1.setSelectedItem(2);
+        } else if (posicion.equals("Porteo")) {
+            jcb_posicion1.setSelectedItem(3);
+        }
+
+        js_habilidad1.setValue(jugadorS.getHabilidad());
+        js_resistencia1.setValue(jugadorS.getResistenciaFisica());
+        js_tecnica1.setValue(jugadorS.getTecnica());
+    }//GEN-LAST:event_verActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -970,6 +1029,7 @@ public class principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree Arbol_Liga;
     private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JPopupMenu arbol_menu;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1045,6 +1105,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_precioj1;
     private javax.swing.JTextField tf_presupuesto;
     private javax.swing.JTextField tf_presupuesto1;
+    private javax.swing.JMenuItem ver;
     // End of variables declaration//GEN-END:variables
 
     ArrayList<jugador> jugadores = new ArrayList();
