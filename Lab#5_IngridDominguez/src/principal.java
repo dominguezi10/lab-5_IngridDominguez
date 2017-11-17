@@ -981,6 +981,7 @@ public class principal extends javax.swing.JFrame {
             jcb_estadio1.setSelectedIndex(1);
         }
         
+        jButton3.setVisible(false);
         
     }//GEN-LAST:event_verActionPerformed
 
