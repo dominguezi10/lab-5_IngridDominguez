@@ -960,7 +960,7 @@ public class principal extends javax.swing.JFrame {
             } catch (Exception e) {
             }
 
-        }
+        }//
     }//GEN-LAST:event_Arbol_LigaMouseClicked
 
     private void verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verActionPerformed
